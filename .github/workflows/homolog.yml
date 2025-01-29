@@ -5,10 +5,6 @@ on:
     branches:
       - homolog
 
-permissions:
-  contents: write
-  pull-requests: write
-
 jobs:
   build:
     name: Build
@@ -45,6 +41,19 @@ jobs:
           git config user.name "GitHub Actions"
           git config user.email "github-actions[bot]@users.noreply.github.com"
           git remote set-url origin https://x-access-token:${{ secrets.GH_TOKEN }}@github.com/${{ github.repository }}.git
+
+      - name: Check Git status
+        run: |
+          git status
+
+      - name: Pull latest changes from homolog
+        run: |
+          git checkout homolog
+          git pull origin homolog
+
+      - name: Push changes to development
+        run: |
+          git push origin homolog --force
 
   create-pr:
     name: Create Pull Request to Main
