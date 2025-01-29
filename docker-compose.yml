@@ -1,0 +1,45 @@
+version: '3.8'
+services:
+  sales-service:
+    build:
+      context: ./backend/DeveloperStore.Sales
+    ports:
+      - "5001:80"
+    environment:
+      - ConnectionStrings__MongoDB=mongodb://admin:password@mongo:27017
+  
+  api-service:
+    build: 
+      context: ./backend/DeveloperStore.Api
+    ports:
+      - "5002:80"
+    environment:
+      - ConnectionStrings__PostgreSQL=Host=postgres;Database=api_service;Username=admin;Password=password
+  
+  gateway-service:
+    build: 
+      context: ./backend/DeveloperStore.Gateway
+    ports:
+      - "5000:80"
+    depends_on:
+      - sales-service
+      - api-service
+
+  mongo:
+    image: mongo:6
+    container_name: mongo
+    ports:
+      - "27017:27017"
+    environment:
+      - MONGO_INITDB_ROOT_USERNAME=admin
+      - MONGO_INITDB_ROOT_PASSWORD=password
+
+  postgres:
+    image: postgres:15
+    container_name: postgres
+    ports:
+      - "5432:5432"
+    environment:
+      - POSTGRES_USER=admin
+      - POSTGRES_PASSWORD=password
+      - POSTGRES_DB=api_service
