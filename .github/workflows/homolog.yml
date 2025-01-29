@@ -46,15 +46,6 @@ jobs:
         run: |
           git status
 
-      - name: Pull latest changes from homolog
-        run: |
-          git checkout homolog
-          git pull origin homolog
-
-      - name: Push changes to development
-        run: |
-          git push origin homolog --force
-
   create-pr:
     name: Create Pull Request to Main
     needs: setup-git-credentials

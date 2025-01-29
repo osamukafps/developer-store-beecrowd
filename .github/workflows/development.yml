@@ -45,16 +45,7 @@ jobs:
 
       - name: Check Git status
         run: |
-          git status
-
-      - name: Pull latest changes from development
-        run: |
-          git checkout development
-          git pull origin development
-
-      - name: Push changes to development
-        run: |
-          git push origin development --force    
+          git status   
 
   create-pr:
     name: Open Pull Request to Homolog
