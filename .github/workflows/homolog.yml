@@ -1,4 +1,4 @@
-name: Deploy Hom
+name: Deploy to Hom
 
 on:
   pull_request:
