@@ -27,7 +27,7 @@ jobs:
         run: dotnet build backend/developer-store-backend.sln --no-restore --verbosity normal
 
       - name: Run unit tests
-        run: dotnet build backend/developer-store-backend.sln --no-restore --verbosity normal
+        run: dotnet test backend/developer-store-backend.sln --no-restore --verbosity normal
   
   setup-git-credentials:
     name: Setup Git Credentials

@@ -5,6 +5,10 @@ on:
     branches:
       - homolog
 
+permissions:
+  contents: write
+  pull-requests: write
+
 jobs:
   build:
     name: Build
