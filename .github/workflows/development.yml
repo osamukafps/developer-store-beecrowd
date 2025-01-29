@@ -8,8 +8,7 @@ on:
 jobs:
   build-and-test:
     name: Build
-    runs-on:
-      ubuntu-latest
+    runs-on: ubuntu-latest
     
     steps:
       - name: Checkout
@@ -45,7 +44,7 @@ jobs:
 
       - name: Check Git status
         run: |
-          git status   
+          git status
 
   create-pr:
     name: Open Pull Request to Homolog
@@ -58,8 +57,7 @@ jobs:
       - name: Create pull request
         uses: peter-evans/create-pull-request@v5
         with: 
-          branch: development
-          base: homolog
+          branch: development  # A branch de onde vai sair o PR
+          base: homolog  # A branch para onde vai o PR
           title: "Sync: development to homolog"
           body: "Automated pull request to sync changes from development to homolog"
-    
