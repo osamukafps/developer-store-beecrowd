@@ -6,8 +6,8 @@ on:
       - homolog
 
 jobs:
-  build-and-test:
-    name: Build and Test
+  build:
+    name: Build
     runs-on: ubuntu-latest
 
     steps:
@@ -17,7 +17,7 @@ jobs:
       - name: Setup .NET
         uses: actions/setup-dotnet@v3
         with:
-          dotnet-version: 9.0
+          dotnet-version: '9.0.x'
 
       - name: Install dependencies
         run: dotnet restore backend/developer-store-backend.sln
