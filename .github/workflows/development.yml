@@ -21,7 +21,7 @@ jobs:
           dotnet-version: 9.0
       
       - name: Install dependencies
-        run: dotnet restore developer-store-beecrowd/backend/developer-store-backend.sln
+        run: dotnet restore ../../backend/developer-store-backend.sln
 
       - name: Project build
         run: dotnet build --no-restore --verbosity normal
