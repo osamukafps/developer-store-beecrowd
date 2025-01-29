@@ -30,6 +30,7 @@ jobs:
 
   setup-git-credentials:
     name: Setup Git Credentials
+    needs: build
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
@@ -43,7 +44,7 @@ jobs:
 
   create-pr:
     name: Create Pull Request to Main
-    needs: build-and-test
+    needs: setup-git-credentials
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
