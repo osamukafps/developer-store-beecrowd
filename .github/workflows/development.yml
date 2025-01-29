@@ -36,12 +36,13 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
-      
+
       - name: Set up Git
-        uses: git-tools/setup-git@v2
-        with:
-          token: ${{ secrets.GH_TOKEN }}
-          
+        run: |
+          git config user.name "GitHub Actions"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git remote set-url origin https://x-access-token:${{ secrets.GH_TOKEN }}@github.com/${{ github.repository }}.git
+
       - name: Check Git status
         run: |
           git status
