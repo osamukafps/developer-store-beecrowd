@@ -7,7 +7,7 @@ EXPOSE 8081
 FROM mcr.microsoft.com/dotnet/sdk:9.0 AS build
 ARG BUILD_CONFIGURATION=Release
 WORKDIR /src
-COPY ["DeveloperStore.Gateway/DeveloperStore.Gateway.csproj", "DeveloperStore.Gateway/"]
+COPY ["backend/DeveloperStore.Gateway/DeveloperStore.Gateway.csproj", "DeveloperStore.Gateway/"]
 RUN dotnet restore "DeveloperStore.Gateway/DeveloperStore.Gateway.csproj"
 COPY . .
 WORKDIR "/src/DeveloperStore.Gateway"
