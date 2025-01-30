@@ -57,7 +57,10 @@ jobs:
       - name: Create pull request
         uses: peter-evans/create-pull-request@v5
         with: 
-          branch: development  # A branch de onde vai sair o PR
-          base: homolog  # A branch para onde vai o PR
-          title: "Sync: Development to Homolog"
-          body: "Automated pull request to sync changes from development to homolog"
+          token: ${{ secrets.GH_TOKEN }}
+          commit-message: 'chore: create pull request to homolog'
+          title: 'chore: create pull request to homolog'
+          body: 'This is an automatic pull request created by GitHub Actions.'
+          branch: 'development'
+          base: 'homolog'
+          labels: 'automated-pr'
