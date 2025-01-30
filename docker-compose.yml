@@ -2,7 +2,8 @@ version: '3.8'
 services:
   sales-service:
     build:
-      context: ./backend/DeveloperStore.Sales
+      context: ./backend
+      dockerfile: ./DeveloperStore.Sales/Dockerfile
     ports:
       - "5001:80"
     environment:
@@ -10,7 +11,8 @@ services:
   
   api-service:
     build: 
-      context: ./backend/DeveloperStore.Api
+      context: ./backend
+      dockerfile: ./DeveloperStore.Api/Dockerfile
     ports:
       - "5002:80"
     environment:
@@ -18,7 +20,8 @@ services:
   
   gateway-service:
     build: 
-      context: ./backend/DeveloperStore.Gateway
+      context: ./backend
+      dockerfile: ./DeveloperStore.Gateway/Dockerfile
     ports:
       - "5000:80"
     depends_on:
