@@ -1,0 +1,66 @@
+name: Deploy to Dev
+
+on:
+  push:
+    branches:
+      - development
+
+jobs:
+  build-and-test:
+    name: Build
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+      
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v3
+        with:
+          dotnet-version: '9.0.x'
+      
+      - name: Install dependencies
+        run: dotnet restore backend/developer-store-backend.sln
+
+      - name: Project build
+        run: dotnet build backend/developer-store-backend.sln --no-restore --verbosity normal
+
+      - name: Run unit tests
+        run: dotnet test backend/developer-store-backend.sln --no-restore --verbosity normal
+  
+  setup-git-credentials:
+    name: Setup Git Credentials
+    needs: build-and-test
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Set up Git
+        run: |
+          git config user.name "GitHub Actions"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git remote set-url origin https://x-access-token:${{ secrets.GH_TOKEN }}@github.com/${{ github.repository }}.git
+
+      - name: Check Git status
+        run: |
+          git status
+
+  create-pr:
+    name: Open Pull Request to Homolog
+    needs: setup-git-credentials
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Create pull request
+        uses: peter-evans/create-pull-request@v5
+        with: 
+          token: ${{ secrets.GH_TOKEN }}
+          commit-message: 'chore: create pull request to homolog'
+          title: 'chore: create pull request to homolog'
+          body: 'This is an automatic pull request created by GitHub Actions.'
+          branch: 'development'
+          base: 'homolog'
+          labels: 'automated-pr'
