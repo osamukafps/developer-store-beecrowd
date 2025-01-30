@@ -7,7 +7,7 @@ EXPOSE 8081
 FROM mcr.microsoft.com/dotnet/sdk:9.0 AS build
 ARG BUILD_CONFIGURATION=Release
 WORKDIR /src
-COPY ["backend/DeveloperStore.Api/DeveloperStore.Api.csproj", "DeveloperStore.Api/"]
+COPY ["../DeveloperStore.Api/DeveloperStore.Api.csproj", "DeveloperStore.Api/"]
 RUN dotnet restore "DeveloperStore.Api/DeveloperStore.Api.csproj"
 COPY . .
 WORKDIR "/src/DeveloperStore.Api"
