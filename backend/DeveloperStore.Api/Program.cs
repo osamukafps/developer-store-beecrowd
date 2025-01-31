@@ -36,6 +36,7 @@ builder.Services.AddScoped<IPaginationService, PaginationService>();
 
 // Auto Mapper
 builder.Services.AddAutoMapper(typeof(DomainToDtoMappingProfile));
+builder.Services.AddAutoMapper(typeof(CommandToDomainMappingProfile));
 
 var app = builder.Build();
 

@@ -24,7 +24,6 @@
     </ItemGroup>
 
     <ItemGroup>
-      <Folder Include="Application\Mediator\Commands\" />
       <Folder Include="Domain\VOs\" />
     </ItemGroup>
 

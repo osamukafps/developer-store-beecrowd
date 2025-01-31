@@ -8,14 +8,13 @@ public class PaginationService : IPaginationService
 {
     public async Task<(IEnumerable<T>, int)> ApplyPaginationAndSorting<T>(IQueryable<T> query, int page, int pageSize, string orderBy)
     {
-        // Ordenação
         if (!string.IsNullOrEmpty(orderBy))
         {
             var orderByParts = orderBy.Split(',');
             foreach (var part in orderByParts)
             {
                 var parts = part.Trim().Split(' ');
-                var property = parts[0]; // Nome da propriedade
+                var property = parts[0];
                 var direction = parts.Length > 1 && parts[1].ToLower() == "desc";
 
                 var parameter = Expression.Parameter(typeof(T), "x");
@@ -31,7 +30,6 @@ public class PaginationService : IPaginationService
             }
         }
 
-        // Paginação
         var totalItems = await query.CountAsync();
         var totalPages = (int)Math.Ceiling(totalItems / (double)pageSize);
 
