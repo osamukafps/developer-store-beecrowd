@@ -12,6 +12,7 @@
         <PackageReference Include="MediatR" Version="12.4.1" />
         <PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="9.0.1"/>
         <PackageReference Include="MongoDB.Driver" Version="3.1.0" />
+        <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
         <PackageReference Include="Npgsql" Version="9.0.2" />
         <PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL" Version="9.0.3" />
     </ItemGroup>
@@ -23,9 +24,8 @@
     </ItemGroup>
 
     <ItemGroup>
-      <Folder Include="Application\" />
-      <Folder Include="Domain\Interfaces\" />
-      <Folder Include="Infra\Persistence\Repositories\" />
+      <Folder Include="Application\Mediator\Commands\" />
+      <Folder Include="Domain\VOs\" />
     </ItemGroup>
 
 </Project>

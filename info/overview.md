@@ -1,4 +1,4 @@
-[Back to README](../readme.md)
+[Back to README](./readme.md)
 
 ## Overview
 This project serves as an evaluation for senior developer candidates. It is designed to assess various skills and competencies required for a senior developer role, including but not limited to:

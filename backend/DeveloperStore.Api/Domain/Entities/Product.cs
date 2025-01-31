@@ -1,5 +1,3 @@
-using DeveloperStore.Api.Domain.VOs;
-
 namespace DeveloperStore.Api.Domain.Entities;
 
 public class Product
@@ -24,4 +22,10 @@ public class Product
         Image = image;
         Rating = rating;
     }
+}
+
+public class Rating
+{
+    public int Count { get; set; }
+    public double Rate { get; set; }
 }
